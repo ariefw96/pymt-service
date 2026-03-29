@@ -1,7 +1,7 @@
-package com.msig.order.kafka;
+package com.msig.notification.kafka;
 
-import com.msig.order.dto.PaymentRequestDto;
-import com.msig.order.service.PaymentService;
+import com.msig.notification.dto.PaymentRequestDto;
+import com.msig.notification.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -14,14 +14,14 @@ public class KafkaConsumer {
     private ObjectMapper mapper;
 
     @Autowired
-    private PaymentService paymentService;
+    private NotificationService notificationService;
 
-    @KafkaListener(topics = "payment.succesful", groupId = "msig-group")
+    @KafkaListener(topics = "notification.payment.successful", groupId = "msig-group")
     public void listenWalletTranfer(String message) {
-        System.out.println("Received message[success payment]: " + message);
+        System.out.println("Received message[start notification send]: " + message);
         var val = mapper.readValue(message, PaymentRequestDto.class);
 
-        paymentService.pay(val);
+        notificationService.sendOrderConfirmation(val);
     }
 
 }

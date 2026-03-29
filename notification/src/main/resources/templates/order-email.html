@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .table th, .table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        .table th { background-color: #f2f2f2; }
+        .total { font-weight: bold; font-size: 18px; text-align: right; margin-top: 15px; }
+        .header { background: #007bff; color: white; padding: 20px; text-align: center; }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Konfirmasi Pesanan</h1>
+</div>
+<p>Halo, Pesanan Anda dengan ID: <strong th:text="${orderId}"></strong> telah berhasil dibayar. Segera penjual akan mengemas pesanan Anda.</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Nama Produk</th>
+        <th>Qty</th>
+        <th>Harga Satuan</th>
+        <th>Subtotal</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="detail : ${details}">
+        <td th:text="${detail.productName}">Produk A</td>
+        <td th:text="${detail.quantity}">1</td>
+        <td th:text="${'Rp ' + #numbers.formatDecimal(detail.productPrice, 0, 'POINT', 0, 'COMMA')}">Rp 0</td>
+        <td th:text="${'Rp ' + #numbers.formatDecimal(detail.productPrice * detail.quantity, 0, 'POINT', 0, 'COMMA')}">Rp 0</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="total">
+    Total Pembelian: <span th:text="${'Rp ' + #numbers.formatDecimal(totalPrice, 0, 'POINT', 0, 'COMMA')}"></span>
+</div>
+
+<p>Terima kasih telah berbelanja!</p>
+</body>
+</html>
