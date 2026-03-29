@@ -10,6 +10,7 @@
    - proses apa yang dijalankan
    - payload
    - dan kebutuhan tambahan adalah traceID, ini bisa kita analogikan sebagai "nomor resi" dari suatu keberlangsungan proses jika kita menggunakan arsitektur microservice agar lebih mudah dalam menganalisa log.
+     
    b. seperti telah dijelaskan sebelumnya, traceID itu penting dalam penelusuran log. dengan adanya traceId tersebut kita mengamati alur suatu proses dari A -> B -> C -> dan seterusnya
    c. jika traceId tidak konsisten antar service malahan akan membuat bingung yang menelusuri log tersebut, dikarenakan kita tidak tahu seharusnya alurnya terhenti dimana
 4. a. untuk consumer sendiri, biasanya saya melakukan pengecekan lebih lanjut apakah data tesebut telah diproses sebelumnya. jika data tersebut sudah diproses sebelumnya maka return saja tanpa melakukan proses lebih lanjut, saya juga menerapkan algoritma seperti ini untuk menghandle callback seperti payment gateway agar tidak terjadi double charge
