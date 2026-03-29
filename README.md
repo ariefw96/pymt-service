@@ -1,3 +1,38 @@
+## Instalasi
+
+1. Clone project terlebih dahulu
+```
+git clone https://github.com/ariefw96/pymt-service.git
+cd pymt-service
+git checkout master
+```
+2. Persiapan Project di IDE
+- Buka folder project di IntelliJ IDEA.
+- Tunggu IntelliJ melakukan resolve dependencies.
+- Pastikan Project SDK diatur ke Java 17.
+
+3. Build JAR
+   Kita kita build parent nya dan tunggu sampai selesai
+```
+mvn clean install -DskipTests=true
+```
+
+## Deployment
+Project ini sudah dilengkapi kafka yang sudah ada pada docker-compose.yml
+notes : untuk database (PostgreSQL) sengaja dibuat terpisah 
+
+Sebelumnya, set dahulu value ke .env, untuk formatnya bisa dilihat di .env.example
+
+Jalankan command berikut untuk menjalankan docker compose
+```
+docker compose up -d --build
+```
+
+## Documentation
+[postman documentation](https://pastebin.com/9Us9yt44)
+
+## Soal dan Jawaban
+
 1. Dikarenakan payment gateway bisa mengirim callback lebih dari 1 kali, maka dari service update order akan dilakukan pengecekan apakah order tersebut sudah berganti status menjadi paid. ketika status order sudah menjadi paid maka akan bypass logic (langsung return) dan service tidak akan melakukan apa-apa sehingga tidak akan terjadi double charge
 2. a. Untuk error yang tidak boleh di retry adalah error yang bersifat permanent seperti bad request. biasanya error bad request adalah error yang terjadi ketika request dari client tidak memenuhi kebutuhan jadi walaupun  diretry sampai bebereapa kali pun hasilnya akan tetap sama. untuk return http 500 sendiri sebenarnya perlu di cek, di server tersebut apakah data (misalnya transaksi) sudah terbuat atau belum, tapi seharusnya jika memang ada kesalahan di server harusnya data di rollback.
    
