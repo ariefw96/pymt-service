@@ -7,4 +7,5 @@ import java.util.UUID;
 public interface OrderService {
 
     UUID saveOrder(OrderRequestDto dto);
+    Object getDetailOrder(UUID orderId);
 }

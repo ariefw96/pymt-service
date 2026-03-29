@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/payment")
+@RequestMapping("/v1/webhook")
 public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
 
-    @PostMapping("/webhook")
+    @PostMapping("/process")
     public ResponseEntity<Object> doProcessWehbook(
             @RequestBody PaymentRequestDto paymentRequestDto
     ) {

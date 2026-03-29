@@ -37,6 +37,8 @@ public class PaymentServiceImpl implements PaymentService {
             log.info("Process payment with orderId {}", dto.getOrderId());
             kafkaProducerService.sendMessage(KafkaTopics.PAYMENT_SUCCESSFUL, mapper.writeValueAsString(dto));
             kafkaProducerService.sendMessage(KafkaTopics.NOTIFICATION_PAYMENT_SUCCESSFUL, mapper.writeValueAsString(dto));
+        }else{
+            log.info("Order already paid");
         }
         return null;
     }

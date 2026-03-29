@@ -3,20 +3,20 @@ spring:
     name: notification-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/msig_test
-    username: postgres
-    password: password
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:mwallet}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:password}
+
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
 
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ariefwidiyatmoko38@gmail.com # Email Gmail Anda
-    password: pzrh bvqn vzha lsra # 16 Digit App Password (TANPA SPASI)
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
     properties:
       mail:
         smtp:
@@ -45,8 +45,8 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
-    register-with-eureka: true
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761/eureka}
     fetch-registry: true
+    register-with-eureka: true
   instance:
     prefer-ip-address: true

@@ -45,4 +45,10 @@ public class OrderServiceImpl implements OrderService {
 
         return order.getOrderId();
     }
+
+    @Override
+    public Object getDetailOrder(UUID orderId) {
+        return orderRepo.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+    }
 }
