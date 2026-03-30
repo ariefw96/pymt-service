@@ -1,3 +1,15 @@
+## Kebutuhan
+Sebelum memulai, pastikan perangkat kamu sudah terinstall:
+
+- Java 17 (Amazon Corretto atau OpenJDK)
+
+- Maven 3.x
+
+- Docker Desktop (dengan WSL2 backend untuk Windows atau Docker Engine untuk Linux)
+
+- IntelliJ IDEA (Rekomendasi IDE)
+- PostgreSQL local atau online service
+
 ## Instalasi
 
 1. Clone project terlebih dahulu
